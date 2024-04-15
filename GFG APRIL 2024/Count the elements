@@ -1,0 +1,31 @@
+class Solution:
+    def countElements(self, a, b, n, query, q):
+        # code here
+        b.sort()
+        
+        # Initialize a list to store the count of elements less than or equal to a[x] for each query
+        result = []
+        
+        # Perform binary search for each query
+        for x in query:
+            # Perform binary search to find the count of elements less than or equal to a[x] in array b
+            count = self.binarySearch(b, a[x])
+            result.append(count)
+        
+        return result
+    
+    def binarySearch(self, arr, target):
+        # Initialize pointers for binary search
+        left, right = 0, len(arr) - 1
+        count = 0
+        
+        # Binary search to find the count of elements less than or equal to the target
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid] <= target:
+                count = mid + 1
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return count
