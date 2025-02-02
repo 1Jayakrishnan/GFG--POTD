@@ -1,0 +1,19 @@
+class Solution:
+    def levelOrder(self, root):
+        # Your code here
+        if not root:
+            return []
+        result=[]
+        q=[root]
+        while q:
+            l=[]
+            next_q=[]
+            for i in q:
+                l.append(i.data)
+                if i.left:
+                    next_q.append(i.left)
+                if i.right:
+                    next_q.append(i.right)
+            result.append(l)
+            q=next_q
+        return result
