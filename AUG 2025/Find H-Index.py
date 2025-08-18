@@ -1,0 +1,19 @@
+class Solution:
+    def hIndex(self, citations):
+        n = len(citations)
+        bucket = [0] * (n + 1)
+        
+        # Count papers in buckets
+        for c in citations:
+            if c >= n:
+                bucket[n] += 1
+            else:
+                bucket[c] += 1
+        
+        # Traverse from high to low
+        total = 0
+        for i in range(n, -1, -1):
+            total += bucket[i]
+            if total >= i:
+                return i
+        return 0
